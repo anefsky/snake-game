@@ -27,9 +27,9 @@ export default class Game extends Component {
 
         return (
             <div className="game">
+                <Grid size={this.gridSize} snake={this.state.snakeArr}/>
                 <DisplayPanel displayColor={this.state.displayColor}/>
                 <ActionPanel changeDisplayColor={this.changeColor}/>
-                <Grid size={this.gridSize} snake={this.state.snakeArr}/>
             </div>
         )
     }

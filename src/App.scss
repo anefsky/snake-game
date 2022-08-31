@@ -3,6 +3,24 @@
   display: flex;
   justify-content: center;
   align-items: center;
+
+  .action-panel {
+    .button-set {
+      margin-top: 20px;
+      display: flex;
+      align-items: center;
+      Button {
+        margin: 10px;
+        height: 50px;
+        width: 50px;
+      }
+
+      .up-down-buttons {
+        display: flex;
+        flex-direction: column;
+      }
+    }
+  }
   
   .game {
     height: 700px;
