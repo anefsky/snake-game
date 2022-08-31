@@ -10,7 +10,7 @@ export default class Game extends Component {
         this.gridSize = 10;
         this.snake = new Snake(this.gridSize);
         this.state = {
-            displayColor: 'red',
+            snakeDirection: "north",
             snakeArr: this.snake.getSnakeArray()
         }
         this.runIntervals();
@@ -23,13 +23,15 @@ export default class Game extends Component {
         }, 1000);
     }
 
+    changeDirection = direction => this.snake.setDirection(direction);
+
     render() {
 
         return (
             <div className="game">
                 <Grid size={this.gridSize} snake={this.state.snakeArr}/>
-                <DisplayPanel displayColor={this.state.displayColor}/>
-                <ActionPanel changeDisplayColor={this.changeColor}/>
+                {/* <DisplayPanel snakeDirection={this.state.snakeDirection}/> */}
+                <ActionPanel changeDir={this.changeDirection}/>
             </div>
         )
     }

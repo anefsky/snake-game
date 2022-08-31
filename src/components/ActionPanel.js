@@ -10,18 +10,22 @@ export default class ActionPanel extends Component {
         return (
             <div className="action-panel">
                 <div className="button-set">
-                    <Button variant="contained">
+                    <Button variant="contained" 
+                            onClick={() => this.props.changeDir('west')}>
                         <ArrowLeftIcon fontSize="large"/>
                     </Button>
                     <div className="up-down-buttons">
-                        <Button variant="contained">
+                        <Button variant="contained" 
+                                onClick={() => this.props.changeDir('north')}>
                             <ArrowDropUpIcon fontSize="large"/>
                         </Button>
-                        <Button variant="contained">
+                        <Button variant="contained" 
+                                onClick={() => this.props.changeDir('south')}>
                             <ArrowDropDownIcon fontSize="large"/>
                         </Button>
                     </div>
-                    <Button variant="contained">
+                    <Button variant="contained" 
+                            onClick={() => this.props.changeDir('east')}>
                         <ArrowRightIcon fontSize="large"/>
                     </Button>
                 </div>
