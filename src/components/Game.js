@@ -19,8 +19,9 @@ export default class Game extends Component {
     runIntervals = () => {
         setInterval( () => {
             this.snake.move();
+            // this.snake.grow();
             this.setState( {snakeArr: this.snake.getSnakeArray()});
-        }, 1000);
+        }, 500);
     }
 
     changeDirection = direction => this.snake.setDirection(direction);
@@ -30,7 +31,7 @@ export default class Game extends Component {
         return (
             <div className="game">
                 <Grid size={this.gridSize} snake={this.state.snakeArr}/>
-                {/* <DisplayPanel snakeDirection={this.state.snakeDirection}/> */}
+                <DisplayPanel snakeLength={this.state.snakeArr.length}/>
                 <ActionPanel changeDir={this.changeDirection}/>
             </div>
         )

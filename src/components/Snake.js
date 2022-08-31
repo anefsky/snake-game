@@ -49,5 +49,28 @@ export default class Snake {
         this.snakeArray = [{row: row, col: col}, ...arr.slice(0,-1)];
     }
 
+    grow = () => {
+        const arr = this.snakeArray;
+        let row = arr[0].row;
+        let col = arr[0].col;
+        switch(this.direction) {
+            case 'north':
+                row -= 1;
+                break;
+            case 'south':
+                row += 1;
+                break;
+            case 'west':
+                col -= 1;
+                break;
+            case 'east':
+                col += 1;
+                break;
+            default:
+        }
+        this.snakeArray = [{row: row, col: col}, ...arr];
+    }
+
+
     getSnakeArray = () => [...this.snakeArray];
 }
