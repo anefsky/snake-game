@@ -14,9 +14,15 @@ export default class Grid extends Component {
         }
         return false;
     }
+
+    isOnApple = (row, col) => {
+        const appleCell = this.props.apple;
+        if(appleCell.row === row && appleCell.col === col) return true;
+        return false;
+    }
  
     cell = (row, col) => {
-        return (<div className={`cell ${this.isOnSnake(row,col) ? 'snake' : ''}`}>
+        return (<div className={`cell ${this.isOnSnake(row,col) ? 'snake' : ''} ${this.isOnApple(row,col) ? 'apple' : ''}`}>
             {row},{col}
         </div>);
     }

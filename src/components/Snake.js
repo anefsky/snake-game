@@ -20,14 +20,9 @@ export default class Snake {
         this.direction = 'west';
     }
 
-    // grow = () => {
-    //     const arr = this.snakeArray;
-    //     this.snakeArray = [{row: arr[0].row + 1, col: arr[0].col}, ...arr];
-    // }
-
     setDirection = direction => this.direction = direction;
 
-    move = () => {
+    getNewHead = () => {
         const arr = this.snakeArray;
         let row = arr[0].row;
         let col = arr[0].col;
@@ -46,31 +41,16 @@ export default class Snake {
                 break;
             default:
         }
-        this.snakeArray = [{row: row, col: col}, ...arr.slice(0,-1)];
+        return {row: row, col: col};
+    }    
+
+    move = () => {
+        this.snakeArray = [this.getNewHead(), ...this.snakeArray.slice(0,-1)]; // remove last
     }
 
     grow = () => {
-        const arr = this.snakeArray;
-        let row = arr[0].row;
-        let col = arr[0].col;
-        switch(this.direction) {
-            case 'north':
-                row -= 1;
-                break;
-            case 'south':
-                row += 1;
-                break;
-            case 'west':
-                col -= 1;
-                break;
-            case 'east':
-                col += 1;
-                break;
-            default:
-        }
-        this.snakeArray = [{row: row, col: col}, ...arr];
+        this.snakeArray = [this.getNewHead(), ...this.snakeArray];  // add new head, keep rest
     }
-
 
     getSnakeArray = () => [...this.snakeArray];
 }
