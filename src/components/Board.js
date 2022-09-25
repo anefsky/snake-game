@@ -1,6 +1,6 @@
 import React, {Component} from "react";
 
-export default class Grid extends Component {
+export default class Board extends Component {
     constructor(props) {
         super(props);
 
@@ -8,7 +8,7 @@ export default class Grid extends Component {
     }
 
     isOnSnake = (row, col) => {
-         const snake = this.props.snake;
+        const snake = this.props.snake;
         for(let i = 0; i < snake.length; i++) {
             if(snake[i].row === row && snake[i].col === col) return true;
         }
@@ -20,9 +20,12 @@ export default class Grid extends Component {
         if(appleCell.row === row && appleCell.col === col) return true;
         return false;
     }
+
+    isOnBothSnakeAndApple = (row, col) => this.isOnSnake(row, col) && this.isOnApple(row, col);
  
     cell = (row, col) => {
-        return (<div className={`cell ${this.isOnSnake(row,col) ? 'snake' : ''} ${this.isOnApple(row,col) ? 'apple' : ''}`}>
+        return (<div className={`cell ${this.isOnSnake(row,col) ? 'snake' : ''} 
+                ${this.isOnApple(row,col) ? 'apple' : ''}`}>
             {row},{col}
         </div>);
     }

@@ -2,7 +2,7 @@
 import React, {Component} from 'react';
 import ActionPanel from './ActionPanel';
 import DisplayPanel from './DisplayPanel';
-import Grid from './Grid';
+import Board from './Board';
 import Snake from './Snake';
 import Apple from './Apple';
 
@@ -20,11 +20,13 @@ export default class Game extends Component {
         this.runIntervals();
     }
 
+    isEatingApple = () => this.state.appleCell.row === this.state.snakeArr[0].row &&
+        this.state.appleCell.col === this.state.snakeArr[0].col;
+
     runIntervals = () => {
         setInterval( () => {
-            this.snake.move();
-            // this.snake.grow();
-            this.setState( {snakeArr: this.snake.getSnakeArray()}); // causing unmounted error
+            this.isEatingApple() ? this.snake.grow() : this.snake.move();
+            this.setState({snakeArr: this.snake.getSnakeArray()}); // causing unmounted warning
         }, 500);
     }
 
@@ -34,7 +36,8 @@ export default class Game extends Component {
 
         return (
             <div className="game">
-                <Grid size={this.gridSize} snake={this.state.snakeArr} apple={this.state.appleCell}/>
+                <Board size={this.gridSize} snake={this.state.snakeArr} 
+                    apple={this.state.appleCell}/>
                 <DisplayPanel snakeLength={this.state.snakeArr.length}/>
                 <ActionPanel changeDir={this.changeDirection}/>
             </div>
