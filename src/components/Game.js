@@ -1,4 +1,3 @@
-// import { Apple } from '@mui/icons-material';
 import React, {Component} from 'react';
 import ActionPanel from './ActionPanel';
 import DisplayPanel from './DisplayPanel';
@@ -7,16 +6,20 @@ import Snake from './Snake';
 import Apple from './Apple';
 
 export default class Game extends Component {
+    gridSize = 10;
+    snake = new Snake(this.gridSize);
+    apple = new Apple(this.gridSize);
+    
     constructor(props) {
         super(props);
-        this.gridSize = 10;
-        this.snake = new Snake(this.gridSize);
-        this.apple = new Apple(this.gridSize);
-        this.state = {
+         this.state = {
             snakeDirection: "north",
             snakeArr: this.snake.getSnakeArray(),
             appleCell: this.apple.getAppleCell()
         }
+    }
+
+    componentDidMount = () => {
         this.runIntervals();
     }
 
@@ -26,7 +29,7 @@ export default class Game extends Component {
     runIntervals = () => {
         setInterval( () => {
             this.isEatingApple() ? this.snake.grow() : this.snake.move();
-            this.setState({snakeArr: this.snake.getSnakeArray()}); // causing unmounted warning
+            this.setState({snakeArr: this.snake.getSnakeArray()});
         }, 500);
     }
 

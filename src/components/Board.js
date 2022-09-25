@@ -1,12 +1,6 @@
 import React, {Component} from "react";
 
 export default class Board extends Component {
-    constructor(props) {
-        super(props);
-
-        console.log(props);
-    }
-
     isOnSnake = (row, col) => {
         const snake = this.props.snake;
         for(let i = 0; i < snake.length; i++) {
