@@ -15,8 +15,6 @@ export default class Board extends Component {
         return false;
     }
 
-    isOnBothSnakeAndApple = (row, col) => this.isOnSnake(row, col) && this.isOnApple(row, col);
- 
     cell = (row, col) => {
         return (<div className={`cell ${this.isOnSnake(row,col) ? 'snake' : ''} 
                 ${this.isOnApple(row,col) ? 'apple' : ''}`}>
